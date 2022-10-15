@@ -83,9 +83,6 @@ class Node:
     def insert_new_pred(self, new_n: 'Node') -> None:
         """Inserts new node to the network as this node's predecessor.
         Also updates neighboring nodes and necessary finger tables."""
-                
-        #print("Predecessor node BEFORE node join:")
-        #self.pred.print_node(items_print=True)
 
         # New node's successor is this node
         new_n.f_table.append([(new_n.id + 1) % (HS), self])
@@ -100,9 +97,6 @@ class Node:
         new_n.initialize_finger_table()
         new_n.fix_successor_list()
         new_n.update_necessary_fingers(joinning=True)
-                        
-        #print("Predecessor node AFTER node join:")
-        #new_n.pred.print_node(items_print=True)
 
     def insert_item_to_node(self, new_item: tuple, print_item=False) -> None:
         """Insert data in the node."""
@@ -114,6 +108,9 @@ class Node:
             print(f"Item with key {new_item[0]} after updating record:\n{self.items[new_item[0]]}")
 
     def delete_item_from_node(self, key: str, item_print: bool = False) -> None:
+        """Given a key, checks if item exists in a node's item
+        and removes it. Otherwise prints not found."""
+
         if key in self.items:
             if item_print:
                 print(f"Node before removing item with key {key}:")

@@ -75,6 +75,16 @@ class Interface:
         start_node = self.get_node(start_node_id)
         start_node.find_successor(hash_func(key)).delete_item_from_node(key,item_print=item_print)
         
+    def get_item(self, key: str, start_node_id: int = None) -> tuple | None:
+        """Given a key, finds node responsible for
+        an item and returns both in a tuple."""
+
+        start_node = self.get_node(start_node_id)
+        resp_node = start_node.find_successor(hash_func(key))
+        if resp_node is not None:
+            return (resp_node, resp_node.items[key])
+        return
+        
     def insert_all_data(self, dict_items: list[tuple], start_node_id: int = None) -> None:
         """Inserts all data from parsed csv into the correct nodes."""
 

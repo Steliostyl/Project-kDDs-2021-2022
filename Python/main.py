@@ -8,17 +8,16 @@ HS = 2**KS
 # Successor list size
 SLS = 3
 # Node count
-NC = 5
+NC = 4
 
 def main():
-    # Nodes creation
     interface = iff.Interface()
     
     # Create random network with NC nodes
     interface.build_network(NC)
 
     # Create predefined network with node ids
-    #node_ids=[6, 5, 9, 10, 3, 14]
+    #node_ids=[6, 5, 12, 10, 3, 14]
     #interface.build_network(node_count=len(node_ids), node_ids=node_ids)
 
     # Data insertion
@@ -26,22 +25,25 @@ def main():
     interface.insert_all_data(items.items())
     interface.print_all_nodes(finger_print=True, items_print=False)
     input("Press any key to continue...\n")
+    
+    # Get random key from items
+    random_key = random.sample(sorted(items), 1)[0]
+    print(random_key)
+
+    # Key lookup
+    lookup = {"key": random_key, "start_node_id": None}
+    resp_node, item = interface.get_item(lookup["key"])
+    print(f"Looking up key: {lookup['key']} with hashed value: {hex(iff.hash_func(lookup['key']))}.\
+        \nResponsible node: {hex(resp_node.id)}.\nItem: {item}\n")
+    input("Press any key to continue...\n")
 
     # Update record based on key
-    random_key = random.sample(sorted(items), 1)[0]
     data = "This is a test string to demonstrate the update record function."
     interface.update_record((random_key, data), start_node_id=None, print_item=True)
     input("Press any key to continue...\n")
 
     # Delete key
     interface.delete_item(random_key, item_print=True)
-    input("Press any key to continue...\n")
-
-    # Key lookup
-    lookup = {"key": 12, "start_node_id": None}
-    print(f"Looking up responsible node for key {hex(lookup['key'])} starting from node {lookup['start_node_id']}:")
-    interface.get_node(lookup["start_node_id"])\
-        .find_successor(lookup["key"]).print_node(items_print=False, finger_print=True)
     input("Press any key to continue...\n")
 
     # Exact match
