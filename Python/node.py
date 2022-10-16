@@ -105,7 +105,7 @@ class Node:
             print(f"Item with key {new_item[0]} before updating record:\n{self.items[new_item[0]]}")
         self.items[new_item[0]] = new_item[1]
         if print_item:
-            print(f"Item with key {new_item[0]} after updating record:\n{self.items[new_item[0]]}")
+            print(f"Item with key {new_item[0]} after updating record:\n{self.items[new_item[0]]}\n")
 
     def delete_item_from_node(self, key: str, item_print: bool = False) -> None:
         """Given a key, checks if item exists in a node's item

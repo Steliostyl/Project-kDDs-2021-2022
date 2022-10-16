@@ -8,7 +8,7 @@ HS = 2**KS
 # Successor list size
 SLS = 3
 # Node count
-NC = 4
+NC = 5
 
 def main():
     interface = iff.Interface()
@@ -56,13 +56,13 @@ def main():
     # Node Join
     rnid = interface.get_id_not_in_net()
     interface.node_join(rnid, print_node=True)
-    interface.print_all_nodes()
+    interface.print_all_nodes(finger_print=True)
     input("Press any key to continue...\n")
 
     # Node Leave
     rnid = interface.get_random_node().id
     interface.node_leave(rnid, print_node=True)
-    interface.print_all_nodes()
+    interface.print_all_nodes(finger_print=True)
     input("Press any key to continue...\n")
     
     # Range query
